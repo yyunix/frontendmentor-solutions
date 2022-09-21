@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap');
+
+:root {
+  --color-very-dark-gray: #18171F;
+  --color-dark-gray: #24232C;
+  --color-gray: #817D92;
+  --color-almost-white: #E6E5EA;
+  --color-green: #A4FFAF;
+  --color-red: #F64A4A;
+  --color-salmon: #FB7C58;
+  --color-yellow: #F8CD65;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .heading-lg {
+    @apply font-bold text-xl;
+  }
+
+  .heading-md {
+    @apply font-bold text-lg
+  }
+
+  body {
+    @apply font-bold text-base;
+  }
+}
