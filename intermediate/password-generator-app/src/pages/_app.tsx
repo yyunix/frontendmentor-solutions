@@ -7,6 +7,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+          Password Generator - Frontend Mentor Challenge by @yyunix36
+        </title>
+        <meta
+          name="description"
+          content="Password Generator created with Next.js, TypeScript, and TailwindCSS"
+        />
       </Head>
       <Component {...pageProps} />
     </>

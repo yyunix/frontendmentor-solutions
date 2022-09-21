@@ -9,6 +9,7 @@ module.exports = {
   ],
   theme: {
     fontSize: {
+      sm: ["16px", "21px"],
       base: ["18px", "23px"],
       lg: ["24px", "31px"],
       xl: ["32px", "43px"],
@@ -24,8 +25,11 @@ module.exports = {
         "almost-white": "var(--color-almost-white)",
         green: "var(--color-green)",
         red: "var(--color-red)",
-        salmon: "var(--color-salmon)",
+        orange: "var(--color-salmon)",
         yellow: "var(--color-yellow)",
+      },
+      width: {
+        540: "540px",
       },
     },
   },
