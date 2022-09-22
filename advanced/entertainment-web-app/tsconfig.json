@@ -20,6 +20,9 @@
       "@/lib/*": ["./src/lib/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/styles/*": ["./src/styles/*"],
+      "@/data/*": ["./src/data/*"],
+      "@/public/*": ["./public/*"],
+      "@/hooks/*": ["./src/hooks/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

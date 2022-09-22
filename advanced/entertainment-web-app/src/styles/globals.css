@@ -1,6 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {}
+@layer base {
+  :root {
+    --tw-bg-opacity: 1; /* OPACITY HACK FOR CSS VARS */
+    --tw-text-opacity: 1;
 
+    --color-pure-white: 255 255 255;
+    --color-red: 252 71 71;
+    --color-dark-blue: 16 20 30;
+    --color-graish-blue: 90 105 143;
+    --color-semi-dark-blue: 22 29 47;
+  }
+
+  html {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  body {
+    @apply bg-dark-blue min-h-screen text-white;
+  }
+
+
+}
+
+@layer components {
+  .navbar-height{
+    height: calc(100vh - 32px - 32px); 
+  }
+
+  .heading-lg {
+    @apply text-heading-lg font-light;
+  }
+
+  .heading-xs {
+    @apply text-[14px] md:text-heading-xs font-medium;
+  }
+
+  .body-sm {
+    @apply text-[11px] md:text-body-sm font-light;
+  }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .section-regular {
+    @apply px-4 sm:px-[25px];
+  }
+
+  .section-trending {
+    @apply pl-4 sm:pl-[25px];
+  }
+}
