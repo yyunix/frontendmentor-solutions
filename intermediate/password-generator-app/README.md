@@ -17,8 +17,8 @@ This is a solution to the [Password generator app challenge on Frontend Mentor](
 
 ### Links
 
-- Solution URL: [Github Repository](https://your-solution-url.com)
-- Live Site URL: [Password Generator](password-generator-yyunix36.netlify.app)
+- Solution URL: [Github Repository](https://github.com/yyunix/frontendmentor-solutions/tree/master/intermediate/password-generator-app)
+- Live Site URL: [Password Generator](https://password-generator-yyunix36.vercel.app/)
 
 ## My process
 

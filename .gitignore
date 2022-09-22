@@ -8,3 +8,5 @@
 node_modules
 README-template.md
 starter-code
+# Local Netlify folder
+.netlify
