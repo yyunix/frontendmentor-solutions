@@ -12,7 +12,7 @@
     --color-pure-white: 255 255 255;
     --color-red: 252 71 71;
     --color-dark-blue: 16 20 30;
-    --color-graish-blue: 90 105 143;
+    --color-grayish-blue: 90 105 143;
     --color-semi-dark-blue: 22 29 47;
   }
 
@@ -23,8 +23,6 @@
   body {
     @apply bg-dark-blue min-h-screen text-white;
   }
-
-
 }
 
 @layer components {
@@ -34,6 +32,10 @@
 
   .heading-lg {
     @apply text-heading-lg font-light;
+  }
+
+  .heading-md {
+    @apply text-heading-md font-light;
   }
 
   .heading-xs {

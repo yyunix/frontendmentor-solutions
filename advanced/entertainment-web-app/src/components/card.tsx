@@ -2,15 +2,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import CategoryIcon from "@/assets/icon-category-movie.svg";
 import BookmarkIcon from "@/assets/icon-bookmark-empty.svg";
-import { Movies, Thumbnail } from "@/types/movies";
+import { Movies, RegularSize, TrendingSize } from "@/types/movies";
 import { useWindowSize } from "@/hooks/useWindowSize";
 
-type CardProps = Partial<Movies>;
-
-const Card = (props: CardProps) => {
+const Card = (props: Movies) => {
   const { title, category, year, rating, thumbnail, isTrending } = props;
 
-  const [imageSize, setImageSize] = useState<keyof Thumbnail>("small");
+  const [imageSize, setImageSize] = useState("small");
 
   const { width } = useWindowSize();
 
@@ -18,19 +16,21 @@ const Card = (props: CardProps) => {
     if (width! > 1024) {
       setImageSize("large");
     } else if (width! > 768) {
-      setImageSize("medium");
+      setImageSize(isTrending ? "small" : "medium");
     } else {
       setImageSize("small");
     }
-  }, [width]);
+  }, [width, isTrending]);
 
-  const imageFolder = isTrending ? "trending" : "regular";
+  const imageFolder = isTrending
+    ? thumbnail.trending![imageSize as keyof TrendingSize]
+    : thumbnail.regular[imageSize as keyof RegularSize];
 
-  const imagePath = thumbnail!.regular[imageSize].replace("./", "/");
+  const imagePath = imageFolder.replace("./", "/");
 
   return (
-    <div className="w-full cursor-pointer relative">
-      <div className="relative w-full">
+    <div className="w-full relative">
+      <div className="w-full">
         <div
           className={
             isTrending

@@ -1,4 +1,9 @@
-export type Thumbnail = {
+export type TrendingSize = {
+  large: string;
+  small: string;
+};
+
+export type RegularSize = {
   large: string;
   medium: string;
   small: string;
@@ -10,8 +15,8 @@ export type Movies = {
   isTrending: boolean;
   rating: string;
   thumbnail: {
-    regular: Thumbnail;
-    trending?: { large: string; small: string };
+    trending?: TrendingSize;
+    regular: RegularSize;
   };
   title: string;
   year: number;
