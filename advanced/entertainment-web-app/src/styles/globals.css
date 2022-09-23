@@ -64,4 +64,8 @@
   .section-trending {
     @apply pl-4 sm:pl-[25px];
   }
+
+  .card-hover-bg {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  }
 }

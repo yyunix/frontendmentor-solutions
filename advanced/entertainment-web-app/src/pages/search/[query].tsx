@@ -63,7 +63,7 @@ const SearchPage = () => {
   const foundResult = searchResult[queryCategory]!;
   const resultHeading = `Found ${foundResult.length} result${
     foundResult.length > 1 ? "s" : ""
-  } for '${query}'`;
+  } for ‘${query}’`;
 
   return (
     <>

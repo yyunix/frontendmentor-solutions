@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import CategoryIcon from "@/assets/icon-category-movie.svg";
+import MovieIcon from "@/assets/icon-category-movie.svg";
+import TVIcon from "@/assets/icon-category-tv.svg";
 import BookmarkIcon from "@/assets/icon-bookmark-empty.svg";
+import PlayIcon from "@/assets/icon-play.svg";
 import { Movies, RegularSize, TrendingSize } from "@/types/movies";
 import { useWindowSize } from "@/hooks/useWindowSize";
 
@@ -32,15 +34,21 @@ const Card = (props: CardProps) => {
 
   const imagePath = imageFolder.replace("./", "/");
 
+  const getCategoryIcon = () => {
+    if (category === "Movie") return <MovieIcon />;
+    if (category === "TV Series") return <TVIcon />;
+  };
+
   return (
-    <div className="w-full relative">
+    <div className=" w-full relative cursor-pointer">
       <div className="w-full">
         <div
-          className={
-            trending
-              ? "relative h-[140px] w-[240px] sm:h-[230px] sm:w-[470px]"
-              : "relative h-[110px] sm:h-[140px] lg:h-[174px]"
-          }
+          className={`group relative
+            ${
+              trending
+                ? "h-[140px] w-[240px] sm:h-[230px] sm:w-[470px]"
+                : "h-[110px] sm:h-[140px] lg:h-[174px]"
+            }`}
         >
           <Image
             src={imagePath}
@@ -49,9 +57,19 @@ const Card = (props: CardProps) => {
             objectFit="cover"
             className="rounded-lg"
           />
+
+          <div className="opacity-0 transition duration-100 ease-linear w-full h-full absolute group-hover:opacity-100 card-hover-bg">
+            <div
+              className="
+          flex absolute inset-1/2 -translate-x-2/4 -translate-y-2/4 bg-white/25 py-[9px] pl-[9px] pr-6 rounded-[28.5px] w-fit h-fit items-center gap-[19px]"
+            >
+              <PlayIcon />
+              <p className="heading-xs">Play</p>
+            </div>
+          </div>
         </div>
-        <button className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full">
-          <BookmarkIcon />
+        <button className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full hover:bg-white group">
+          <BookmarkIcon className="group-hover:stroke-dark-blue" />
         </button>
       </div>
 
@@ -63,7 +81,7 @@ const Card = (props: CardProps) => {
         <div className="body-sm text-white/75 flex space-x-1.5">
           <p>{year}</p>
           <p className="before:content-['•'] before:pr-1.5 flex items-center">
-            <CategoryIcon />
+            {getCategoryIcon()}
             <span className="pl-1">{category}</span>
           </p>
           <p className="before:content-['•'] before:pr-1.5">{rating}</p>

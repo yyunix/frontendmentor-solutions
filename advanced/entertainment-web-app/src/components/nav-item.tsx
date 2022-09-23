@@ -9,6 +9,12 @@ type NavItemProps = {
 
 const NavItem = ({ href, Component }: NavItemProps) => {
   const router = useRouter();
+  const { category } = router.query;
+
+  const mapCategory = () => {
+    if (category === "movie") return "/movies";
+    if (category === "tv") return "/tv-series";
+  };
 
   return (
     <li>
@@ -16,7 +22,9 @@ const NavItem = ({ href, Component }: NavItemProps) => {
         <a>
           <Component
             className={`hover:fill-red ${
-              router.pathname === href ? "fill-white" : ""
+              router.pathname === href || mapCategory() === href
+                ? "fill-white"
+                : ""
             }`}
           />
         </a>

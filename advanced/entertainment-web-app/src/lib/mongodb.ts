@@ -1,4 +1,5 @@
 // https://github.com/vercel/next.js/blob/canary/examples/with-mongodb/lib/mongodb.ts
+// https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/
 
 import { MongoClient } from "mongodb";
 

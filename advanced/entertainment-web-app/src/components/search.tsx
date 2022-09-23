@@ -32,7 +32,7 @@ const Search = ({ placeholder, category = "all" }: SearchProps) => {
       <SearchIcon className="w-6 h-6 sm:w-8 sm:h-8" />
       <input
         type="text"
-        className="ml-4 sm:ml-6 bg-dark-blue sm:border-b sm:border-transparent sm:focus:border-gray-blue sm:pb-3.5 text-base font-light sm:heading-md outline-none w-full placeholder:text-white/50"
+        className="ml-4 sm:ml-6 bg-dark-blue sm:border-b sm:border-transparent sm:focus:border-gray-blue sm:pb-3.5 text-base font-light sm:heading-md outline-none w-full placeholder:text-white/50 caret-red"
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => dispatch(setSearchQuery(e.target.value))}
