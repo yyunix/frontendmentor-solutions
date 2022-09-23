@@ -5,24 +5,28 @@ import BookmarkIcon from "@/assets/icon-bookmark-empty.svg";
 import { Movies, RegularSize, TrendingSize } from "@/types/movies";
 import { useWindowSize } from "@/hooks/useWindowSize";
 
-const Card = (props: Movies) => {
-  const { title, category, year, rating, thumbnail, isTrending } = props;
+interface CardProps extends Movies {
+  trending?: boolean;
+}
+const Card = (props: CardProps) => {
+  const { title, category, year, rating, thumbnail, trending = false } = props;
 
   const [imageSize, setImageSize] = useState("small");
 
   const { width } = useWindowSize();
 
+  // Get the right image size depending on the window width
   useEffect(() => {
     if (width! > 1024) {
       setImageSize("large");
     } else if (width! > 768) {
-      setImageSize(isTrending ? "small" : "medium");
+      setImageSize(trending ? "large" : "medium");
     } else {
       setImageSize("small");
     }
-  }, [width, isTrending]);
+  }, [width, trending]);
 
-  const imageFolder = isTrending
+  const imageFolder = trending
     ? thumbnail.trending![imageSize as keyof TrendingSize]
     : thumbnail.regular[imageSize as keyof RegularSize];
 
@@ -33,7 +37,7 @@ const Card = (props: Movies) => {
       <div className="w-full">
         <div
           className={
-            isTrending
+            trending
               ? "relative h-[140px] w-[240px] sm:h-[230px] sm:w-[470px]"
               : "relative h-[110px] sm:h-[140px] lg:h-[174px]"
           }
@@ -53,7 +57,7 @@ const Card = (props: Movies) => {
 
       <div
         className={
-          isTrending ? "absolute bottom-4 sm:bottom-6 left-4 sm:left-6" : "mt-2"
+          trending ? "absolute bottom-4 sm:bottom-6 left-4 sm:left-6" : "mt-2"
         }
       >
         <div className="body-sm text-white/75 flex space-x-1.5">

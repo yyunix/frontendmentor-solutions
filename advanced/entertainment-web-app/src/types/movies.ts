@@ -1,3 +1,5 @@
+import type { WithId, Document } from "mongodb";
+
 export type TrendingSize = {
   large: string;
   small: string;
@@ -21,3 +23,11 @@ export type Movies = {
   title: string;
   year: number;
 };
+
+export interface RegularMovies extends WithId<Document> {
+  regularMovies: Omit<Movies, "thumbnail.trending">;
+}
+
+export interface TrendingMovies extends WithId<Document> {
+  trendingMovies: Movies;
+}
