@@ -3,6 +3,7 @@ import Link from "next/link";
 import Logo from "@/assets/logo.svg";
 import Avatar from "@/assets/image-avatar.png";
 import { menu } from "@/data/nav";
+import NavItem from "./nav-item";
 
 const Navbar = () => {
   return (
@@ -15,12 +16,8 @@ const Navbar = () => {
         </Link>
 
         <ul className="flex space-x-6 sm:space-x-8 lg:flex-col lg:space-x-0 lg:space-y-10 lg:mt-[75px]">
-          {menu.map((item) => (
-            <li key={item.href}>
-              <Link href={item.href}>
-                <a>{item.icon}</a>
-              </Link>
-            </li>
+          {menu.map((li) => (
+            <NavItem href={li.href} key={li.href} Component={li.Component} />
           ))}
         </ul>
 
