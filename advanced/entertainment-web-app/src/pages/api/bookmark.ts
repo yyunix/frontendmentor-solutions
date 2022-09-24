@@ -42,9 +42,12 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
-      const bookmarkedMovies = await db.collection("movies").find({}).toArray();
+      const bookmarkedEntertainment = await db
+        .collection("movies")
+        .find({ isBookmarked: true })
+        .toArray();
 
-      res.status(200).json(bookmarkedMovies);
+      res.status(200).json(bookmarkedEntertainment);
     } catch (error) {
       console.error(error);
       res

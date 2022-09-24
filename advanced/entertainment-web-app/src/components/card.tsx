@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import MovieIcon from "@/assets/icon-category-movie.svg";
 import TVIcon from "@/assets/icon-category-tv.svg";
 import EmptyBookmarkIcon from "@/assets/icon-bookmark-empty.svg";
@@ -23,11 +24,11 @@ const Card = (props: CardProps) => {
     trending = false,
     isBookmarked,
   } = props;
-  console.log(props);
+
   const [imageSize, setImageSize] = useState("small");
-
   const { width } = useWindowSize();
-
+  const [isBooked, setIsBooked] = useState(isBookmarked);
+  const router = useRouter();
   // Get the right image size depending on the window width
   useEffect(() => {
     if (width! > 1024) {
@@ -52,19 +53,36 @@ const Card = (props: CardProps) => {
     if (category === "TV Series") return <TVIcon />;
   };
 
+  // Pull new data from the db
+  const refreshData = () => {
+    if (router.pathname === "/bookmark") {
+      router.replace(router.asPath);
+    }
+  };
+
   // Handle bookmark on click
   const toggleBookmark = async () => {
-    const action = isBookmarked ? "pull" : "push";
+    const action = isBooked ? "pull" : "push";
+    // when user clickes, update the db
+    try {
+      const res = await fetch("/api/bookmark", {
+        method: "PUT",
+        body: JSON.stringify({
+          id: _id,
+          action,
+        }),
+      });
 
-    const res = await fetch("/api/bookmark", {
-      method: "PUT",
-      body: JSON.stringify({
-        id: _id,
-        action,
-      }),
-    });
+      // If successfully unbookmarked, remove the card from the bookmark page
+      if (res.status < 300) {
+        refreshData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
-    await res.json();
+    // when user clicks, update the state
+    setIsBooked(!isBooked);
   };
 
   return (
@@ -100,7 +118,7 @@ const Card = (props: CardProps) => {
           className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full hover:bg-white group"
           onClick={toggleBookmark}
         >
-          {isBookmarked ? (
+          {isBooked ? (
             <FullBookmarkIcon className="group-hover:stroke-dark-blue" />
           ) : (
             <EmptyBookmarkIcon className="group-hover:stroke-dark-blue" />
