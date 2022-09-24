@@ -2,17 +2,28 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import MovieIcon from "@/assets/icon-category-movie.svg";
 import TVIcon from "@/assets/icon-category-tv.svg";
-import BookmarkIcon from "@/assets/icon-bookmark-empty.svg";
+import EmptyBookmarkIcon from "@/assets/icon-bookmark-empty.svg";
+import FullBookmarkIcon from "@/assets/icon-bookmark-full.svg";
 import PlayIcon from "@/assets/icon-play.svg";
 import { Movies, RegularSize, TrendingSize } from "@/types/movies";
 import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface CardProps extends Movies {
   trending?: boolean;
+  _id: string;
 }
 const Card = (props: CardProps) => {
-  const { title, category, year, rating, thumbnail, trending = false } = props;
-
+  const {
+    _id,
+    title,
+    category,
+    year,
+    rating,
+    thumbnail,
+    trending = false,
+    isBookmarked,
+  } = props;
+  console.log(props);
   const [imageSize, setImageSize] = useState("small");
 
   const { width } = useWindowSize();
@@ -28,15 +39,32 @@ const Card = (props: CardProps) => {
     }
   }, [width, trending]);
 
+  // Get the image path
   const imageFolder = trending
     ? thumbnail.trending![imageSize as keyof TrendingSize]
     : thumbnail.regular[imageSize as keyof RegularSize];
 
   const imagePath = imageFolder.replace("./", "/");
 
+  // Get the category icon
   const getCategoryIcon = () => {
     if (category === "Movie") return <MovieIcon />;
     if (category === "TV Series") return <TVIcon />;
+  };
+
+  // Handle bookmark on click
+  const toggleBookmark = async () => {
+    const action = isBookmarked ? "pull" : "push";
+
+    const res = await fetch("/api/bookmark", {
+      method: "PUT",
+      body: JSON.stringify({
+        id: _id,
+        action,
+      }),
+    });
+
+    await res.json();
   };
 
   return (
@@ -68,8 +96,15 @@ const Card = (props: CardProps) => {
             </div>
           </div>
         </div>
-        <button className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full hover:bg-white group">
-          <BookmarkIcon className="group-hover:stroke-dark-blue" />
+        <button
+          className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full hover:bg-white group"
+          onClick={toggleBookmark}
+        >
+          {isBookmarked ? (
+            <FullBookmarkIcon className="group-hover:stroke-dark-blue" />
+          ) : (
+            <EmptyBookmarkIcon className="group-hover:stroke-dark-blue" />
+          )}
         </button>
       </div>
 

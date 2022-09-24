@@ -24,7 +24,7 @@ const initialState: MovieState = {
   },
 };
 
-export const counterSlice = createSlice({
+export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
@@ -52,6 +52,6 @@ export const counterSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { setSearchQuery, setSearchResult, setClearSearch } =
-  counterSlice.actions;
+  searchSlice.actions;
 
-export default counterSlice.reducer;
+export default searchSlice.reducer;
