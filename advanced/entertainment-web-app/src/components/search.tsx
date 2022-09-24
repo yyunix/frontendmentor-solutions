@@ -2,11 +2,7 @@ import { SyntheticEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SearchIcon from "@/assets/icon-search.svg";
 import { RootState } from "@/store/index";
-import {
-  SearchResult,
-  setSearchQuery,
-  setSearchResult,
-} from "@/store/searchSlice";
+import { SearchResult, setSearchQuery } from "@/store/searchSlice";
 import { useRouter } from "next/router";
 
 type SearchProps = {

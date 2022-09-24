@@ -19,6 +19,14 @@ export default async function handler(
           title: { $regex: query, $options: "i" },
         })
         .toArray();
+    } else if (category === "bookmarked") {
+      searchResult = await db
+        .collection("movies")
+        .find({
+          isBookmarked: true,
+          title: { $regex: query, $options: "i" },
+        })
+        .toArray();
     } else {
       searchResult = await db
         .collection("movies")

@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Search from "@/components/search";
 import clientPromise from "@/lib/mongodb";
 import { Movies } from "@/types/movies";
+import Search from "@/components/search";
 import Heading from "@/components/heading";
 import RegularCards from "@/components/regular-cards";
 
@@ -11,15 +11,19 @@ const BookmarkPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
-      <Search placeholder="Search for bookmarked shows" />
-      <section className="section-regular">
-        <Heading heading="Bookmarked Movies" />
-        <RegularCards movies={bookmarkedMovies} />
-      </section>
-      <section className="section-regular">
-        <Heading heading="Bookmarked TV Series" />
-        <RegularCards movies={bookmarkedTV} />
-      </section>
+      <Search placeholder="Search for bookmarked shows" category="bookmarked" />
+      {bookmarkedMovies.length && (
+        <section className="section-regular">
+          <Heading heading="Bookmarked Movies" />
+          <RegularCards movies={bookmarkedMovies} />
+        </section>
+      )}
+      {bookmarkedTV.length && (
+        <section className="section-regular">
+          <Heading heading="Bookmarked TV Series" />
+          <RegularCards movies={bookmarkedTV} />
+        </section>
+      )}
     </>
   );
 };
