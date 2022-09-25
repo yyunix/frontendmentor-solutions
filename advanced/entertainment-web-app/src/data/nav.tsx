@@ -4,14 +4,15 @@ import MoviesIcon from "@/assets/icon-nav-movies.svg";
 import TVIcon from "@/assets/icon-nav-tv-series.svg";
 import BookmarkIcon from "@/assets/icon-nav-bookmark.svg";
 
-type Menu = {
+export type Menu = {
   Component: ElementType;
   href: string;
+  name: string;
 };
 
 export const menu: Menu[] = [
-  { Component: HomeIcon, href: "/" },
-  { Component: MoviesIcon, href: "/movies" },
-  { Component: TVIcon, href: "/tv-series" },
-  { Component: BookmarkIcon, href: "/bookmark" },
+  { Component: HomeIcon, href: "/", name: "Home" },
+  { Component: MoviesIcon, href: "/movies", name: "Movies" },
+  { Component: TVIcon, href: "/tv-series", name: "TV Series" },
+  { Component: BookmarkIcon, href: "/bookmark", name: "Bookmark" },
 ];

@@ -117,6 +117,9 @@ const Card = (props: CardProps) => {
         <button
           className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-dark-blue/50 rounded-full hover:bg-white group"
           onClick={toggleBookmark}
+          aria-label={`${
+            isBooked ? "Unbookmark this video" : "Bookmark this video"
+          }`}
         >
           {isBooked ? (
             <FullBookmarkIcon className="group-hover:stroke-dark-blue" />

@@ -1,13 +1,9 @@
+import { Menu } from "@/data/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ElementType } from "react";
 
-type NavItemProps = {
-  href: string;
-  Component: ElementType;
-};
-
-const NavItem = ({ href, Component }: NavItemProps) => {
+const NavItem = ({ href, Component, name }: Menu) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -19,7 +15,7 @@ const NavItem = ({ href, Component }: NavItemProps) => {
   return (
     <li>
       <Link href={href}>
-        <a>
+        <a aria-label={name}>
           <Component
             className={`hover:fill-red m-auto ${
               router.pathname === href || mapCategory() === href
