@@ -1,52 +1,71 @@
-# Frontend Mentor - Entertainment web app
+# Frontend Mentor - Entertainment web app solution
+
+This is a solution to the [Entertainment web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X).
 
 ![Design preview for the Entertainment web app coding challenge](./preview.jpg)
 
-## Welcome! 👋
+## Table of contents
 
-## The challenge
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [My final thought](#my-final-thought)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-Your challenge is to build out this entertainment web application and get it looking as close to the design as possible.
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-We provide the data in a local `data.json` file, so use that to populate the content on the first load. If you want to take it up a notch, feel free to build this as a full-stack application!
-
-Your users should be able to:
-
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
-- Add/Remove bookmarks from all movies and TV series
-- Search for relevant shows on all pages
-- **Bonus**: Build this project as a full-stack application
-- **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
-
-### Expected Behaviour
+## Overview
+### The challenge
 
 - General
-  - The navigation menu should be fixed to the left for larger screens. Use the "Desktop - Home" page in the design as a visual reference.
+  - [x] The navigation menu should be fixed to the left for larger screens. Use the "Desktop - Home" page in the design as a visual reference.
 - Home
-  - The trending section should scroll sideways to reveal other trending shows
-  - Any search input should search through all shows (i.e. all movies and TV series)
+  - [x] The trending section should scroll sideways to reveal other trending shows
+  - [x] Any search input should search through all shows (i.e. all movies and TV series)
 - Movies
-  - This page should only display shows with the "Movie" category
-  - Any search input should search through all movies
+  - [x] This page should only display shows with the "Movie" category
+  - [x] Any search input should search through all movies
 - TV Series
-  - This page should only display shows with the "TV Series" category
-  - Any search input should search through all TV series
+  - [x] This page should only display shows with the "TV Series" category
+  - [x] Any search input should search through all TV series
 - Bookmarked Shows
-  - This page should display all bookmarked shows from both categories
-  - Any search input should search through all bookmarked shows
+  - [x] This page should display all bookmarked shows from both categories
+  - [x] Any search input should search through all bookmarked shows
 
-## Deploying your project
+### Links
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+- Solution URL: [Solution to Deployed Site - client side only](https://github.com/yyunix/frontendmentor-solutions/tree/master/advanced/entertainment-web-app)
+- Solution URL: [Servier Side Solution](https://github.com/yyunix/frontendmentor-solutions/tree/entertainment-web-app-serverless/advanced/entertainment-web-app)
+- Live Site URL: [Vercel](https://entertainment-web-app-yyunix36.vercel.app/)
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+## My process
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+### Built with
 
-**Have fun building!** 🚀
+- [Next.js](https://nextjs.org/) - React framework
+- [TailwindCSS](https://tailwindcss.com/) - For styles
+- [Redux-toolkit](https://redux-toolkit.js.org/) - Global state management
+
+For the server side solution:
+- [MongoDB](https://www.mongodb.com/) - Database
+
+### What I learned
+
+- I learned how to create endpoints using the built-in Next.js api
+- Unfortunately, I wasn't able to deploy the final app to Vercel due to serverless functions being timed out
+- I ended up stripping off the server side code which removed the authentication functionality and updating the bookmark in the database
+- For my initial(server side) solution, please see refer to [this Github repo](https://github.com/yyunix/frontendmentor-solutions/tree/entertainment-web-app-serverless/advanced/entertainment-web-app)
+
+
+### My final thought
+- I enjoyed working with Next.js but I probably won't use their api because of the deployment issue I faced. 
+- I will use a separate backend for my next projects if I have to.
+- I truly enjoy using TailwindCSS and the VSC plugin for Tailwind.
+
+
+## Author
+
+- Website - [Yujeong Yun](https://yyunix.dev)
