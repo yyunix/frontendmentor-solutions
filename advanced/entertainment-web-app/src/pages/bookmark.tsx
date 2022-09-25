@@ -1,14 +1,16 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import clientPromise from "@/lib/mongodb";
-import { Movies } from "@/types/movies";
 import Search from "@/components/search";
 import Heading from "@/components/heading";
 import RegularCards from "@/components/regular-cards";
+import data from "@/data/data.json";
 
-const BookmarkPage = ({
-  bookmarkedMovies,
-  bookmarkedTV,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const BookmarkPage = () => {
+  const bookmarkedMovies = data.filter(
+    (video) => video.isBookmarked && video.category === "Movie"
+  );
+  const bookmarkedTV = data.filter(
+    (video) => video.isBookmarked && video.category === "TV Series"
+  );
+
   return (
     <>
       <Search placeholder="Search for bookmarked shows" category="bookmarked" />
@@ -26,30 +28,6 @@ const BookmarkPage = ({
       )}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<{
-  bookmarkedMovies: Movies[];
-  bookmarkedTV: Movies[];
-}> = async () => {
-  const client = await clientPromise;
-  const db = client.db("entertainment-app");
-
-  const movies = await db
-    .collection("movies")
-    .find({ isBookmarked: true, category: "Movie" })
-    .toArray();
-  const tv = await db
-    .collection("movies")
-    .find({ isBookmarked: true, category: "TV Series" })
-    .toArray();
-
-  return {
-    props: {
-      bookmarkedMovies: JSON.parse(JSON.stringify(movies)),
-      bookmarkedTV: JSON.parse(JSON.stringify(tv)),
-    },
-  };
 };
 
 export default BookmarkPage;

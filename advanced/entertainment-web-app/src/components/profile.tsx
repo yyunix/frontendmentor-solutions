@@ -1,4 +1,3 @@
-import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Avatar from "@/assets/image-avatar.png";
@@ -30,16 +29,6 @@ const SiteLink = ({ href, label }: ButtonProps) => (
 );
 
 const Profile = ({ onClose }: PropfileProps) => {
-  const { status } = useSession();
-
-  const logout = () => {
-    signOut();
-  };
-
-  if (status === "loading") {
-    return <p>Loading</p>;
-  }
-
   return (
     <div
       className="z-10 fixed inset-0 bg-dark-blue bg-opacity-95 transition-opacity"
@@ -82,16 +71,8 @@ const Profile = ({ onClose }: PropfileProps) => {
           <div className="border-t border-white/30 flex flex-col sm:flex-row items-center justify-between px-4 pt-3 pb-4 sm:p-6 sm:py-5">
             <p>Authentication Pages</p>
             <div>
-              {status !== "authenticated" ? (
-                <>
-                  <Button href="/login" label="Login" />
-                  <Button href="/signup" label="Signup" />
-                </>
-              ) : (
-                <button className="modal-button" onClick={logout}>
-                  Logout
-                </button>
-              )}
+              <Button href="/login" label="Login" />
+              <Button href="/signup" label="Signup" />
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import {
   setSearchQuery,
   setSearchResult,
 } from "@/store/searchSlice";
+import data from "@/data/data.json";
 
 const SearchPage = () => {
   const router = useRouter();
@@ -27,22 +28,33 @@ const SearchPage = () => {
     dispatch(setSearchQuery(query as string));
 
     // Get data and load it on the page
-    const onPageLoad = async () => {
-      try {
-        const data = await fetch(
-          `/api/search/${query}?category=${queryCategory}`
-        );
-        const dataResult = await data.json();
+    const onPageLoad = () => {
+      const searchByTitle = (title: string, query: string) =>
+        title.toLowerCase().includes(query.toLowerCase());
 
-        dispatch(
-          setSearchResult({
-            result: dataResult.data,
-            category: queryCategory,
-          })
+      const dataResult = data.filter((video) => {
+        if (queryCategory === "all") {
+          return searchByTitle(video.title, query as string);
+        }
+
+        if (queryCategory === "bookmarked") {
+          return (
+            video.isBookmarked && searchByTitle(video.title, query as string)
+          );
+        }
+
+        return (
+          video.category.toLowerCase().includes(queryCategory) &&
+          searchByTitle(video.title, query as string)
         );
-      } catch (error) {
-        // Error page
-      }
+      });
+
+      dispatch(
+        setSearchResult({
+          result: dataResult,
+          category: queryCategory,
+        })
+      );
     };
 
     onPageLoad();

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import MovieIcon from "@/assets/icon-category-movie.svg";
 import TVIcon from "@/assets/icon-category-tv.svg";
 import EmptyBookmarkIcon from "@/assets/icon-bookmark-empty.svg";
@@ -11,11 +10,9 @@ import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface CardProps extends Movies {
   trending?: boolean;
-  _id: string;
 }
 const Card = (props: CardProps) => {
   const {
-    _id,
     title,
     category,
     year,
@@ -28,7 +25,7 @@ const Card = (props: CardProps) => {
   const [imageSize, setImageSize] = useState("small");
   const { width } = useWindowSize();
   const [isBooked, setIsBooked] = useState(isBookmarked);
-  const router = useRouter();
+
   // Get the right image size depending on the window width
   useEffect(() => {
     if (width! > 1024) {
@@ -53,34 +50,8 @@ const Card = (props: CardProps) => {
     if (category === "TV Series") return <TVIcon />;
   };
 
-  // Pull new data from the db
-  const refreshData = () => {
-    if (router.pathname === "/bookmark") {
-      router.replace(router.asPath);
-    }
-  };
-
   // Handle bookmark on click
   const toggleBookmark = async () => {
-    const action = isBooked ? "pull" : "push";
-    // when user clickes, update the db
-    try {
-      const res = await fetch("/api/bookmark", {
-        method: "PUT",
-        body: JSON.stringify({
-          id: _id,
-          action,
-        }),
-      });
-
-      // If successfully unbookmarked, remove the card from the bookmark page
-      if (res.status < 300) {
-        refreshData();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
     // when user clicks, update the state
     setIsBooked(!isBooked);
   };
