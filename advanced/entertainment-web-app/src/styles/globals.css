@@ -30,6 +30,26 @@
   input:-webkit-autofill:active {
     transition: background-color 600000s 0s, color 600000s 0s;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-blue;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-red rounded-lg;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-red/70; 
+  }
 }
 
 
@@ -64,6 +84,7 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+  
 
   .section-regular {
     @apply px-4 sm:px-[25px] mb-10;
