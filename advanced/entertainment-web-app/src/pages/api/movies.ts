@@ -9,7 +9,7 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
     const movies = await db.collection("movies").find({}).toArray();
 
     res.status(200).json(movies);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }

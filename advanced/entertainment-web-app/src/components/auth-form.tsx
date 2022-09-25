@@ -54,8 +54,6 @@ const AuthForm = ({ isLogin = false }) => {
     const password = passwordInputRef.current!.value;
     // const confirmPassword = passwordConfirmInputRef.current!.value;
 
-    // Validation
-
     // Log user in
     if (isLogin) {
       const result = await signIn("credentials", {
@@ -77,7 +75,7 @@ const AuthForm = ({ isLogin = false }) => {
           router.replace("/");
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   };

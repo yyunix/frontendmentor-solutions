@@ -78,7 +78,7 @@ const Card = (props: CardProps) => {
         refreshData();
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     // when user clicks, update the state

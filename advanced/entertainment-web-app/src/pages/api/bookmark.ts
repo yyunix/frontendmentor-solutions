@@ -34,8 +34,8 @@ export default async function handler(
       res.status(201).json({
         success: true,
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       res
         .status(400)
         .json({ success: false, message: "Something went wrong !" });
