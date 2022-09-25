@@ -1,14 +1,12 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { Session } from "next-auth";
 import Head from "next/head";
-import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import { store } from "@/store/index";
 import Layout from "@/components/layout";
 
-function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
@@ -24,15 +22,13 @@ function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
         />
       </Head>
       <Provider store={store}>
-        <SessionProvider session={pageProps.session}>
-          {router.pathname === "/login" || router.pathname === "/signup" ? (
+        {router.pathname === "/login" || router.pathname === "/signup" ? (
+          <Component {...pageProps} />
+        ) : (
+          <Layout>
             <Component {...pageProps} />
-          ) : (
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          )}
-        </SessionProvider>
+          </Layout>
+        )}
       </Provider>
     </>
   );

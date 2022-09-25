@@ -1,4 +1,4 @@
-import { Movies, TrendingMovies } from "@/types/movies";
+import { Movies } from "@/types/movies";
 import Card from "./card";
 
 type TrendingCardsProps = {

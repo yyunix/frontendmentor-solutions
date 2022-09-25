@@ -5,7 +5,6 @@ import {
   InputHTMLAttributes,
   SyntheticEvent,
 } from "react";
-import { signIn } from "next-auth/react";
 import Logo from "@/assets/logo.svg";
 import { useRouter } from "next/router";
 
@@ -29,24 +28,6 @@ const AuthForm = ({ isLogin = false }) => {
 
   const router = useRouter();
 
-  const createUser = async (email: string, password: string) => {
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "applciation/json",
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Something went wrong!");
-    }
-
-    return data;
-  };
-
   const onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -54,35 +35,16 @@ const AuthForm = ({ isLogin = false }) => {
     const password = passwordInputRef.current!.value;
     // const confirmPassword = passwordConfirmInputRef.current!.value;
 
-    // Log user in
-    if (isLogin) {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
-
-      if (!result!.error) {
-        router.replace("/");
-      }
-    }
-    // Signup
-    else {
-      try {
-        const result = await createUser(email, password);
-
-        if (!result!.error) {
-          router.replace("/");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    console.log("submit!", email, password);
   };
 
   return (
     <>
-      <Logo className="m-auto" />
+      <Link href="/">
+        <a>
+          <Logo className="m-auto" />
+        </a>
+      </Link>
       <div className="bg-semi-dark-blue px-6 pt-6 pb-8 rounded-[10px] mt-16 mx-auto sm:w-[400px]">
         <h1 className="heading-lg mb-10">{isLogin ? "Login" : "Sign Up"}</h1>
 
