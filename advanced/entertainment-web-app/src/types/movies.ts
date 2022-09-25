@@ -22,6 +22,7 @@ export type Movies = {
   };
   title: string;
   year: number;
+  _id: string;
 };
 
 export interface RegularMovies extends WithId<Document> {

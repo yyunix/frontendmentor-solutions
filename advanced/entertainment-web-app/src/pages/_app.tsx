@@ -7,10 +7,11 @@ import { persistStore } from "redux-persist";
 import { store } from "@/store/index";
 import Layout from "@/components/layout";
 import { useRouter } from "next/router";
+import { Session } from "next-auth";
 
 const persistor = persistStore(store);
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   const router = useRouter();
 
   return (

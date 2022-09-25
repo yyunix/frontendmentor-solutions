@@ -21,7 +21,7 @@ const NavItem = ({ href, Component }: NavItemProps) => {
       <Link href={href}>
         <a>
           <Component
-            className={`hover:fill-red ${
+            className={`hover:fill-red m-auto ${
               router.pathname === href || mapCategory() === href
                 ? "fill-white"
                 : ""
