@@ -37,7 +37,6 @@
   html {
     font-family: 'Spartan', sans-serif;
   }
-
 }
 
 @layer components {
@@ -63,5 +62,21 @@
   
   .heading-lg {
     @apply text-heading-lg font-bold;
+  }
+
+  .form-control {
+    @apply flex flex-col gap-[10px];
+  }
+
+  .input-field {
+    @apply border border-blue-gray py-4 px-5 rounded focus:border-violet focus:outline-none caret-violet heading-xs bg-white dark:bg-dark-navy dark:border-navy text-black-0 dark:text-white;
+  }
+
+  .dropbox-light {
+    box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+  }
+
+  .dropbox-dark {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   }
 }
