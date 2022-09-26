@@ -1,4 +1,6 @@
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import { format } from "date-fns";
 import { ReactComponent as CalendarIcon } from "../assets/icons/icon-calendar.svg";
 import { ReactComponent as LeftIcon } from "../assets/icons/icon-arrow-left.svg";
 import { ReactComponent as RightIcon } from "../assets/icons/icon-arrow-right.svg";
@@ -10,41 +12,43 @@ type DateFieldProps = {
 };
 
 const DateField = ({ label, id }: DateFieldProps) => {
-  const [isDropped, setIsDropped] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
     <div className="form-control">
       <FormLabel label={label} id={id} />
       <div className="relative">
         {/* Selected Field */}
-        <div
-          className={`input-field flex items-center justify-between cursor-pointer hover:border-violet ${
-            isDropped && "border-violet"
-          }`}
-          onClick={() => setIsDropped(!isDropped)}
-        >
-          <span>21 Aug 2021</span>
-          <CalendarIcon />
-        </div>
 
         {/* Calendar Dropbox */}
-        <div
-          className={`absolute dropbox-light darm:dropbox-dark mt-6 w-full rounded-lg bg-white dark:bg-dark-navy text-navy dark:text-white ${
-            isDropped ? "block" : "hidden"
-          }`}
-        >
-          <div className="pt-6 pb-8 px-[18px] heading-xs">
-            <div className="mb-8 flex justify-between items-center">
-              <button aria-label="Previous month">
-                <LeftIcon />
-              </button>
-              <p>Aug 2021</p>
-              <button aria-label="Next month">
-                <RightIcon />
-              </button>
-            </div>
-            <div>Calendar</div>
-          </div>
+        <div className="relative">
+          <DatePicker
+            dateFormat="dd MMM yyyy"
+            selected={startDate}
+            onChange={(date) => setStartDate(date!)}
+            renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={decreaseMonth}
+                  type="button"
+                  className="focus:outline-none focus:ring-2 focus:ring-light-violet"
+                >
+                  <LeftIcon />
+                </button>
+                <span className="text-heading-xs dark:text-white">
+                  {format(date, "MMM yyyy")}
+                </span>
+                <button
+                  onClick={increaseMonth}
+                  type="button"
+                  className="focus:outline-none focus:ring-2 focus:ring-light-violet"
+                >
+                  <RightIcon />
+                </button>
+              </div>
+            )}
+          />
+          <CalendarIcon className="absolute  top-4 right-4" />
         </div>
       </div>
     </div>

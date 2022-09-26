@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ReactComponent as CaretDownIcon } from "../assets/icons/icon-arrow-down.svg";
 import { paymentTerms } from "../contents/website";
+import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import FormLabel from "./form-label";
 
 type SelectFieldProps = {
@@ -11,6 +12,10 @@ type SelectFieldProps = {
 const SelectField = ({ label, id }: SelectFieldProps) => {
   const [isDropped, setIsDropped] = useState(false);
   const [selectedOption, setSelectedOption] = useState(paymentTerms[3]);
+
+  const ref = useRef(null);
+
+  useOnClickOutside(ref, () => setIsDropped(false));
 
   const onSelectChange = (term: string) => {
     setSelectedOption(term);
@@ -23,7 +28,7 @@ const SelectField = ({ label, id }: SelectFieldProps) => {
     <div className="form-control">
       <FormLabel label={label} id={id} />
 
-      <div className="relative">
+      <div className="relative" ref={ref}>
         {/* Selected Field */}
         <div
           className={`input-field flex items-center justify-between cursor-pointer hover:border-violet ${
@@ -39,7 +44,7 @@ const SelectField = ({ label, id }: SelectFieldProps) => {
 
         {/* Select Dropbox */}
         <div
-          className={`absolute dropbox-light darm:dropbox-dark mt-6 w-full rounded-lg bg-white dark:bg-dark-navy text-navy dark:text-white ${
+          className={`absolute dropbox-light darm:dropbox-dark mt-6 w-full rounded-lg bg-white dark:bg-dark-navy text-navy dark:text-white z-10 ${
             isDropped ? "block" : "hidden"
           }`}
         >

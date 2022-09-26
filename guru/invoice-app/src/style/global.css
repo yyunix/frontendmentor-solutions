@@ -12,6 +12,7 @@
    url(../assets/fonts/Spartan-Medium-500.ttf) format("truetype");
 }
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,6 +38,10 @@
   html {
     font-family: 'Spartan', sans-serif;
   }
+
+ 
+
+
 }
 
 @layer components {
