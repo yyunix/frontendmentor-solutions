@@ -17,6 +17,9 @@ module.exports = {
         red: "rgb(var(--color-red) / <alpha-value>)",
         salmon: "rgb(var(--color-salmon) / <alpha-value>)",
         "very-light-gray": "rgb(var(--color-very-light-gray) / <alpha-value>)",
+        green: "rgb(var(--color-green) / <alpha-value>)",
+        orange: "rgb(var(--color-orange) / <alpha-value>)",
+        "very-dark-blue": "rgb(var(--color-very-dark-blue) / <alpha-value>)",
       },
       fontSize: {
         "body-2": ["11px", { lineHeight: "18px", letterSpacing: "-0.23px" }],
