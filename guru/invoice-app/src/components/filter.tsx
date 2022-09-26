@@ -1,7 +1,8 @@
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef, useEffect, ChangeEvent } from "react";
 import { ReactComponent as DownIcon } from "../assets/icons/icon-arrow-down.svg";
 import { status } from "../contents/website";
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
+import { useWindowSize } from "../hooks/useWindowSize";
 import CheckboxField from "./checkbox-field";
 
 const initialOptions: any = {};
@@ -14,6 +15,8 @@ const Filter = () => {
   const [isDropped, setIsDropped] = useState(false);
 
   const ref = useRef(null);
+
+  const { width } = useWindowSize();
 
   useOnClickOutside(ref, () => setIsDropped(false));
 
@@ -32,10 +35,12 @@ const Filter = () => {
   return (
     <div className="relative" ref={ref}>
       <div
-        className="flex items-center gap-4 cursor-pointer"
+        className="flex items-center gap-3 md:gap-4 cursor-pointer"
         onClick={openFilterBox}
       >
-        <p className="heading-xs">Filter by status</p>
+        <p className="heading-xs">
+          {width! > 640 ? "Filter by status" : "Filter"}
+        </p>
         <DownIcon
           className={`transition ease-linear duartion-100 ${
             isDropped ? "rotate-180" : ""

@@ -1,4 +1,5 @@
-type StatusType = "paid" | "pending" | "draft";
+import { StatusType } from "../types/invoice";
+
 type StatusProps = {
   status: StatusType;
 };
@@ -7,13 +8,13 @@ const getTextColor = (status: StatusType) => {
   if (status === "paid") return "bg-green/[0.06] text-green";
   if (status === "pending") return "bg-orange/[0.06] text-orange";
   else
-    return "bg-very-dark-blue/[0.06] text-very-dark-blue dark:bg-blue-gray/[0.06] text-blue-gray";
+    return "bg-very-dark-blue/[0.06] text-very-dark-blue dark:bg-blue-gray/[0.06] dark:text-blue-gray";
 };
 
 const getBulletColor = (status: StatusType) => {
   if (status === "paid") return "bg-green";
   if (status === "pending") return "bg-orange";
-  else return "bg-very-dark-blue bg-blue-gray";
+  else return "bg-very-dark-blue dark:bg-blue-gray";
 };
 
 const Status = ({ status }: StatusProps) => {
